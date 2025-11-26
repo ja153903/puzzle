@@ -1,0 +1,16 @@
+{
+  "name": "puzzle",
+  "module": "index.ts",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "aoc": "bun src/scripts/run-aoc.ts"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "2.3.7",
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5"
+  }
+}
