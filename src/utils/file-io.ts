@@ -5,7 +5,8 @@ export async function read(path: string) {
 	const file = Bun.file(path);
 
 	try {
-		return await file.text();
+		const content = await file.text();
+		return content.trim();
 	} catch (e) {
 		throw new Error(
 			`Something went wrong reading the file: ${JSON.stringify(e, null, 2)}`,
