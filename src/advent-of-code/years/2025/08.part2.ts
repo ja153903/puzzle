@@ -1,7 +1,51 @@
+import { UnionFind } from "@/lib/graphs";
+import { combinations } from "@/lib/itertools";
 import { getData } from "./08.data";
 
-async function solve() {
-	const data = await getData();
+function getDistanceBetweenNodes(pair: number[][]) {
+	const [a, b] = pair;
+	const dist = Math.sqrt(
+		(b[2] - a[2]) ** 2 + (b[1] - a[1]) ** 2 + (b[0] - a[0]) ** 2,
+	);
+	return dist;
+}
+
+async function solve(isTest = false) {
+	const data = await getData(isTest);
+	const combs = Array.from(combinations(data, 2));
+	combs.sort((a, b) => {
+		return getDistanceBetweenNodes(a) - getDistanceBetweenNodes(b);
+	});
+
+	const nClosest = combs.slice(0, isTest ? 10 : 1000);
+	const uf = new UnionFind<string>();
+
+	for (const [u, v] of nClosest) {
+		const uHash = JSON.stringify(u);
+		const vHash = JSON.stringify(v);
+		uf.union(uHash, vHash);
+	}
+
+	let i = isTest ? 10 : 1000;
+	let lastInserted = null;
+	while (uf.getGroups().length !== 1 || uf.parent.size !== data.length) {
+		const edge = combs[i];
+		const [u, v] = edge;
+
+		const uHash = JSON.stringify(u);
+		const vHash = JSON.stringify(v);
+		uf.union(uHash, vHash);
+
+		lastInserted = [u, v];
+
+		i++;
+	}
+
+	if (lastInserted === null) {
+		throw new Error("Didn't find the correct edge");
+	}
+
+	return lastInserted[0][0] * lastInserted[1][0];
 }
 
 const ans = await solve();

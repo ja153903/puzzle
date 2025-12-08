@@ -52,6 +52,35 @@ export function combinations<T>(items: T[], k: number) {
 	return generate(current, used, 0);
 }
 
+export function combinationsWithoutRepetition<T>(items: T[], k: number) {
+	function* generate(
+		current: T[],
+		used: boolean[],
+		start: number,
+	): Generator<T[]> {
+		if (current.length === k) {
+			yield [...current];
+		} else {
+			for (let i = start; i < items.length; i++) {
+				if (used[i]) {
+					continue;
+				}
+
+				used[i] = true;
+				current.push(items[i]);
+				yield* generate(current, used, i + 1);
+				current.pop();
+				used[i] = false;
+			}
+		}
+	}
+
+	const used = new Array<boolean>(items.length).fill(false);
+	const current: T[] = [];
+
+	return generate(current, used, 0);
+}
+
 export function powerset<T>(items: T[]) {
 	function backtrack(result: T[][], current: T[], start: number) {
 		result.push([...current]);

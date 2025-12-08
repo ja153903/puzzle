@@ -1,6 +1,9 @@
 import { getPathToProblemInput } from "@/utils/advent-of-code";
-import { read, readlines } from "@/utils/file-io";
+import { readlines } from "@/utils/file-io";
 
 export async function getData(isTest = false) {
-	const text = await read(getPathToProblemInput("2025", "08", isTest));
+	const lines = await readlines(getPathToProblemInput("2025", "08", isTest));
+	return lines.map((line) =>
+		line.split(",").map((value) => Number.parseInt(value, 10)),
+	);
 }
