@@ -1,5 +1,5 @@
 import { describe, expect, test } from "bun:test";
-import { combinations, permutations } from "@/lib/itertools";
+import { combinations, permutations, powerset } from "@/lib/itertools";
 import { factorial } from "@/lib/math";
 
 describe("permutations", () => {
@@ -29,5 +29,14 @@ describe("combinations", () => {
 
 		console.log(collected);
 		expect(collected).toHaveLength(3);
+	});
+});
+
+describe("powerset", () => {
+	test("we should get back the powerset", () => {
+		const items = [1, 2, 3];
+		const pset = powerset(items);
+
+		expect(pset).toHaveLength(8);
 	});
 });

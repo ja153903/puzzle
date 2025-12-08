@@ -51,3 +51,22 @@ export function combinations<T>(items: T[], k: number) {
 
 	return generate(current, used, 0);
 }
+
+export function powerset<T>(items: T[]) {
+	function backtrack(result: T[][], current: T[], start: number) {
+		result.push([...current]);
+
+		for (let i = start; i < items.length; i++) {
+			current.push(items[i]);
+			backtrack(result, current, i + 1);
+			current.pop();
+		}
+	}
+
+	const result: T[][] = [];
+	const current: T[] = [];
+
+	backtrack(result, current, 0);
+
+	return result.sort((a, b) => a.length - b.length);
+}
