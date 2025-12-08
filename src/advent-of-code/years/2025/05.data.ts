@@ -1,7 +1,7 @@
 import { getPathToProblemInput } from "@/utils/advent-of-code";
 import { readlines } from "@/utils/file-io";
 
-export async function getData(isTest: boolean = false) {
+export async function getData\(isTest = false) {
 	const lines = await readlines(getPathToProblemInput("2025", "05", isTest));
 	const idStartingPoint = lines.findIndex((line) => !line.includes("-"));
 

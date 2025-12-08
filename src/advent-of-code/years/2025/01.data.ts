@@ -3,7 +3,7 @@ import { readlines } from "@/utils/file-io";
 
 type Input = { direction: "L" | "R"; clicks: number };
 
-export async function getData(isTest: boolean = false): Promise<Input[]> {
+export async function getData\(isTest = false): Promise<Input[]> {
 	const result: Input[] = [];
 	const lines = await readlines(getPathToProblemInput("2025", "01", isTest));
 	for (const line of lines) {
