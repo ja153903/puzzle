@@ -1,5 +1,8 @@
-import solver from "javascript-lp-solver";
+/** biome-ignore-all lint/suspicious/noExplicitAny: <javascript-lp-solver does not have adequate types> */
 import { type Config, getData } from "./10.data";
+
+// NOTE: This is explicitly a require import because package doesn't support modern JS
+const solver = require("javascript-lp-solver");
 
 function getFewestPresses(config: Config): number {
 	const target = config.joltageRequirements;
@@ -9,9 +12,9 @@ function getFewestPresses(config: Config): number {
 	const model = {
 		optimize: "cost",
 		opType: "min",
-		constraints: {},
-		variables: {},
-		ints: {},
+		constraints: {} as any,
+		variables: {} as any,
+		ints: {} as any,
 	};
 
 	for (let i = 0; i < n; i++) {
