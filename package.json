@@ -12,5 +12,9 @@
   },
   "peerDependencies": {
     "typescript": "^5"
+  },
+  "dependencies": {
+    "javascript-lp-solver": "^0.4.24",
+    "logic-solver": "^2.0.1"
   }
 }
