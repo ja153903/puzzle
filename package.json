@@ -4,7 +4,8 @@
   "type": "module",
   "private": true,
   "scripts": {
-    "aoc": "bun src/scripts/run-aoc.ts"
+    "aoc": "bun src/scripts/run-aoc.ts",
+    "aoc:init": "bun src/scripts/bootstrap-aoc.ts"
   },
   "devDependencies": {
     "@biomejs/biome": "2.3.7",
