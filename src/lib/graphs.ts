@@ -53,3 +53,32 @@ export class UnionFind<T> {
 		return Array.from(groups.values());
 	}
 }
+
+/**
+ * `countPaths` is a cache-backed solution to counting the number of paths
+ * between nodes `u` and `v` as represented by an adjacency list
+ */
+export function countPaths<T>(graph: Map<T, Iterable<T>>, u: T, v: T) {
+	function rec(node: T, cache: Map<T, number>) {
+		if (cache.has(node)) {
+			return cache.get(node) ?? 0;
+		}
+		if (node === v) {
+			return 1;
+		}
+
+		let result = 0;
+		const neighbors = graph.get(node);
+		if (neighbors) {
+			for (const neighbor of neighbors) {
+				result += rec(neighbor, cache);
+			}
+		}
+
+		cache.set(node, result);
+
+		return result;
+	}
+
+	return rec(u, new Map());
+}
