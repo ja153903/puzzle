@@ -1,5 +1,3 @@
-import { identity } from "./identity";
-
 /**
  * `read` takes a filepath and reads the contents into a string
  */
