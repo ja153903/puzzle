@@ -1,3 +1,5 @@
+import { identity } from "./identity";
+
 /**
  * `read` takes a filepath and reads the contents into a string
  */
@@ -37,4 +39,9 @@ export async function readlines(path: string) {
 	}
 
 	return lines;
+}
+
+export async function readgrid<T>(path: string, coerceFn: (ch: string) => T) {
+	const lines = await readlines(path);
+	return lines.map((line) => line.split("").map((ch) => coerceFn(ch)));
 }
