@@ -1,3 +1,5 @@
+import { splitAll } from "@/lib/strings";
+
 /**
  * `read` takes a filepath and reads the contents into a string
  */
@@ -39,7 +41,11 @@ export async function readlines(path: string) {
 	return lines;
 }
 
+/**
+ * readgrid takes a filepath and a function that casts the individual function to some type
+ * and reads it all into a grid of values
+ */
 export async function readgrid<T>(path: string, coerceFn: (ch: string) => T) {
 	const lines = await readlines(path);
-	return lines.map((line) => line.split("").map((ch) => coerceFn(ch)));
+	return lines.map((line) => splitAll(line).map((ch) => coerceFn(ch)));
 }

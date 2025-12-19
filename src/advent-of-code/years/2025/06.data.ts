@@ -1,12 +1,15 @@
+import { splitAll, splitWhitespace } from "@/lib/strings";
 import { getPathToProblemInput } from "@/utils/advent-of-code";
 import { readlines } from "@/utils/file-io";
 
 export async function getData(isTest = false) {
 	const lines = await readlines(getPathToProblemInput("2025", "06", isTest));
 
-	const spaceSeparatedLines = lines.map((line) => line.trim().split(/\s+/g));
+	const spaceSeparatedLines = lines.map((line) =>
+		splitWhitespace(line.trim()),
+	);
 
-	const characterSeparatedLines = lines.map((line) => line.split(""));
+	const characterSeparatedLines = lines.map((line) => splitAll(line));
 	characterSeparatedLines.pop();
 
 	const operations = spaceSeparatedLines.pop();
