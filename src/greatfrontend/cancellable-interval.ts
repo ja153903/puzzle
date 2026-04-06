@@ -4,9 +4,9 @@
  * should have the same exact signature as `setInterval`
  */
 export function setCancellableInterval(
-	callback: Function,
+	callback: (...args: unknown[]) => unknown,
 	delay?: number,
-	...args: Array<unknown>
+	...args: unknown[]
 ): () => void {
 	const id = setInterval(() => {
 		callback(...args);

@@ -1,7 +1,7 @@
 export function setCancellableTimeout(
-	callback: Function,
+	callback: (...args: unknown[]) => unknown,
 	delay?: number,
-	...args: Array<unknown>
+	...args: unknown[]
 ): () => void {
 	const id = setTimeout(() => callback(...args), delay);
 	return () => clearTimeout(id);
