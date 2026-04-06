@@ -28,7 +28,7 @@ async function solve(isTest = false) {
 
 	let i = isTest ? 10 : 1000;
 	let lastInserted = null;
-	while (uf.getGroups().length !== 1 || uf.parent.size !== data.length) {
+	while (uf.groups.length !== 1 || uf.parent.size !== data.length) {
 		const edge = combs[i];
 		const [u, v] = edge;
 

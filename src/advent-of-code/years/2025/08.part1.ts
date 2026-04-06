@@ -26,8 +26,7 @@ async function solve(isTest = false) {
 		uf.union(uHash, vHash);
 	}
 
-	return uf
-		.getGroups()
+	return uf.groups
 		.map((group) => group.length)
 		.toSorted((a, b) => b - a)
 		.slice(0, 3)

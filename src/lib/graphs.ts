@@ -39,7 +39,7 @@ export class UnionFind<T> {
 		return this.find(x) === this.find(y);
 	}
 
-	getGroups(): T[][] {
+	get groups(): T[][] {
 		const groups = new Map<T, T[]>();
 
 		for (const key of this.parent.keys()) {
