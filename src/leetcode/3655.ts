@@ -26,4 +26,5 @@ function xorAfterQueries(nums: number[], queries: number[][]): number {
 
 	return nums.reduce((a, b) => a ^ b);
 }
+
 export { xorAfterQueries, xorAfterQueries__TLE };
