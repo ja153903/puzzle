@@ -10,4 +10,22 @@ export type ClassValue =
 export type ClassDictionary = Record<string, any>;
 export type ClassArray = Array<ClassValue>;
 
-export default function classNames(...args: Array<ClassValue>): string {}
+export default function classNames(...args: Array<ClassValue>): string {
+	const result: string[] = [];
+
+	for (const arg of args) {
+		if (Array.isArray(arg)) {
+			result.push(classNames(...arg));
+		} else if (typeof arg === "object" && arg != null) {
+			for (const [key, value] of Object.entries(arg)) {
+				if (value) {
+					result.push(key);
+				}
+			}
+		} else if (arg) {
+			result.push(arg.toString());
+		}
+	}
+
+	return result.join(" ");
+}
